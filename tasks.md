@@ -1,5 +1,7 @@
 <details><summary><b>Take ETCD Snapshot and save it into `/tmp/snapshot.db`</b></summary><p>
 
+Here's just an example of commands:
+
 ```
 kubectl get pod -n kube-system etcd-master -o json | jq '.spec.containers[0].command'
 
@@ -9,14 +11,6 @@ ETCDCTL_API=3 etcdctl \
   --key /etc/kubernetes/pki/etcd/server.key \
   snapshot save /tmp/snapshot.db
 ```
-
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-link">Link</button>
 
 </p></details>
 
