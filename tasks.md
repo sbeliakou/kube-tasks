@@ -63,7 +63,7 @@ spec:
 
 <details><summary><b>Create a DaemonSet which is saving its data into /var/ds-data foler on each host of the cluster</b></summary><p>
 
-```
+```yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
