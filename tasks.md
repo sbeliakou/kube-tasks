@@ -11,7 +11,7 @@ ETCDCTL_API=3 etcdctl \
 ```
 </p></details>
 
-<details><summary><b>How Many Kyes in Snapshot?</b></summary><p>
+<details><summary><b>How Many Keys in this Snapshot?</b></summary><p>
 
 ```
 ETCDCTL_API=3 etcdctl --write-out=table snapshot status /tmp/snapshot.db 
@@ -20,5 +20,71 @@ ETCDCTL_API=3 etcdctl --write-out=table snapshot status /tmp/snapshot.db
 +----------+----------+------------+------------+
 | ba13d8bd |    11634 |        908 |     1.6 MB |
 +----------+----------+------------+------------+
+```
+</p></details>
+
+<details><summary><b>Create a DaemonSet which is supposed to run on ALL nodes (masters+workers)</b></summary><p>
+
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: sleep-daemon
+  name: sleep-daemon
+spec:
+  selector:
+    matchLabels:
+      app: sleep-daemon
+  template:
+    metadata:
+      labels:
+        app: sleep-daemon
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+        command:
+        - sleep
+        - "1000"
+```
+</p></details>
+
+<details><summary><b>Create a DaemonSet which is saving its data into /var/ds-data foler on each host of the cluster</b></summary><p>
+
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: sleep-daemon
+  name: sleep-daemon
+spec:
+  selector:
+    matchLabels:
+      app: sleep-daemon
+  template:
+    metadata:
+      labels:
+        app: sleep-daemon
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - image: busybox
+        name: busybox
+        command:
+        - /bin/sh
+        - -c
+        - touch /var/ds-data/file && sleep 10000
+        volumeMounts:
+        - name: data-folder
+          mountPath: /var/ds-data
+      volumes:
+      - name: data-folder
+        hostPath:
+          path: /var/ds-data
+          type: DirectoryOrCreate
 ```
 </p></details>
