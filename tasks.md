@@ -13,7 +13,7 @@ ETCDCTL_API=3 etcdctl \
 ```
 
 <form method="POST" action="/" style="text-align: center;">
-  <button type="button" class="btn btn-primary">Check it!</button>  
+  <button type="submit" class="btn btn-primary">Check it!</button>  
 </form>
 </p></details>
 
