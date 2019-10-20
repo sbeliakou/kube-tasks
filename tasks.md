@@ -1,4 +1,4 @@
-<details><summary><b>Take ETCD Snapshot and save it into `/tmp/snapshot.db`</b></summary><p>
+<details><summary><b>Take ETCD Snapshot and save it into /tmp/snapshot.db</b></summary><p>
 
 Here's just an example of commands:
 
@@ -11,10 +11,6 @@ ETCDCTL_API=3 etcdctl \
   --key /etc/kubernetes/pki/etcd/server.key \
   snapshot save /tmp/snapshot.db
 ```
-
-<form method="POST" action="/" style="text-align: center;">
-  <button type="submit" class="btn btn-primary">Check it!</button>  
-</form>
 </p></details>
 
 <details><summary><b>How Many Keys in this Snapshot?</b></summary><p>
